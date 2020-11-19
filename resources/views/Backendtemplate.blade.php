@@ -92,7 +92,7 @@
     <!-- Sidebar menu-->
     <div class="app-sidebar__overlay" data-toggle="sidebar"></div>
     <aside class="app-sidebar">
-      <div class="app-sidebar__user"><img class="app-sidebar__user-avatar" src="https://s3.amazonaws.com/uifaces/faces/twitter/jsa/48.jpg" alt="User Image">
+      <div class="app-sidebar__user"><img class="app-sidebar__user-avatar" src="" alt="">
         <div>
           <p class="app-sidebar__user-name">U Aung</p>
           <p class="app-sidebar__user-designation">Admin</p>
@@ -102,8 +102,9 @@
   
         <li><a class="app-menu__item {{ Request::is('category*') ? 'active' : '' }}" href="{{route('category.index')}}"><i class="app-menu__icon fa fa-pie-chart"></i><span class="app-menu__label">Category</span></a></li>
         <li><a class="app-menu__item {{ Request::is('course*') ? 'active' : '' }}" href="{{route('course.index')}}"><i class="app-menu__icon fa fa-pie-chart"></i><span class="app-menu__label">Course</span></a></li>
-       {{--  <li><a class="app-menu__item {{ Request::is('item*') ? 'active' : '' }}" href="{{route('item.index')}}"><i class="app-menu__icon fa fa-pie-chart"></i><span class="app-menu__label">Item</span></a></li> --}}
          <li><a class="app-menu__item {{ Request::is('register*') ? 'active' : '' }}" href="{{route('register.index')}}"><i class="app-menu__icon fa fa-pie-chart"></i><span class="app-menu__label">register</span></a></li>
+          <li><a class="app-menu__item {{ Request::is('photo*') ? 'active' : '' }}" href="{{route('photo.index')}}"><i class="app-menu__icon fa fa-pie-chart"></i><span class="app-menu__label">photo</span></a></li>
+          <li><a class="app-menu__item {{ Request::is('recommendation*') ? 'active' : '' }}" href="{{route('recommendation.index')}}"><i class="app-menu__icon fa fa-pie-chart"></i><span class="app-menu__label">recommendation</span></a></li>
       </ul>
     </aside>
     

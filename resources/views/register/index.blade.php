@@ -34,7 +34,8 @@
                               <th> No </th>
                               <th>Registerdate</th>
                               <th>Customer Name</th>
-                              <th>phone</th>
+                              <th>Phone</th>
+                           {{--    <th>Course name</th> --}}
                               <th> Action </th>
                         </tr>
                       </thead>
@@ -47,6 +48,7 @@
                           <td>{{$i++}}</td>
                           <td>{{$row->registerdate}}</td>
                           <td>{{$row->user->name}}</td>
+                         {{--  <td></td> --}}
                            <td>{{$row->phone}}</td>
                            
                           <td>
@@ -67,9 +69,9 @@
             <thead>
               <tr>
                      <th> No </th>
-                     <th>Orderdate</th>
+                     <th>Register date</th>
                      <th>Customer Name</th>
-                     <th>phone</th>
+                     <th>Phone number</th>
                      <th> Action </th>
                    
               </tr>

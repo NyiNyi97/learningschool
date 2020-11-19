@@ -14,7 +14,7 @@
     <div class="row">
       <div class="col-md-12">
         <div class="tile">
-          <h2>Course Detail</h2>
+          <h2>Item Detail</h2>
             <div class="card my-3">
             <div class="row no-gutters">
               <div class="col-md-4">

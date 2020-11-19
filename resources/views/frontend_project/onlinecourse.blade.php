@@ -10,16 +10,16 @@
   	</div>
 
 
-	<div class="container-fluid">
+	<div class="container">
     <div class="row">
  
     <div class="col-lg-3 my-4">
 		<div class="accordion  mt-4 active">
 		@foreach($categories as $category)
-          <div class="card Effect ">
+          <div class="card Effect mt-2">
             <div class="card-header" id="headingOne">
 		      <h2 class="mb-0">
-					       <a href="{{route('coursebycategory', $category->id)}}" class="btn btns BtN text-left text-decoration-none text-left {{-- category --}}" type="button" {{-- data-id="{{$category->id}}" --}}>
+					       <a href="{{route('coursebycategory', $category->id)}}" class="btn btns text-left text-decoration-none text-left {{-- category1 --}}" type="button" {{-- data-id="{{$category->id}}" --}}>
 					         {{ $category->name}}
 		       			   </a>
 		     	</h2>
@@ -32,24 +32,26 @@
 		
 
 
-		<div class="col-lg-9">
+		<div class="col-lg-9 {{-- showcategory --}}">
         <div class="row my-5">
          @foreach($courses as $mycourse)          
-            <div class="col-md-4 col-sm-6 showcategory">
-            	<div class="single_content ">
-					<a href="{{route('coursedetail',$mycourse->id)}}">
-					 <img src="{{$mycourse->photo}}" class="img-fluid w-75"></a>
+            <div class="col-md-4 col-sm-6 mb-5">
+            <a href="{{route('coursedetail',$mycourse->id)}}">
+            <div class="single_content card-body border shadow">
+					 <img src="{{$mycourse->photo}}" class="img-fluid w-75">
 					<div class="text_content">
 						<h4>{{$mycourse->name}}</h4>
-						{{-- <p> English </p> --}}
 					</div><br><br>
-				
-					<div class="card-footer">
+				  </a>
+					<div class="">
 	              <!-- Button trigger modal -->
-						<button type="button" class="btn btn-outline-primary bTn container-fluid" data-toggle="modal" data-target="#exampleModal">
+             @role('customer')
+						<button type="button" class="btn btn-outline-primary bTn container-fluid Button" data-toggle="modal" data-target="#exampleModal"  data-id="{{$mycourse->id}}">
 						  Register
 						</button>
-
+          @else
+          <a href="{{route('signinpage')}}" class="btn btn-outline-primary bTn container-fluid"> Register </a>
+          @endrole
 						<!-- Modal -->
 						<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
 						  <div class="modal-dialog">
@@ -61,8 +63,9 @@
 						        </button>
 						      </div>
 						      <div class="modal-body">
-						<form action="{{route('register.store')}}" method="POST" enctype="multipart/form-data">
+						      <form action="{{route('register.store')}}" method="POST" enctype="multipart/form-data">
           					@csrf
+                    <input type="hidden" name="course" value="" class="Course1">
                         <div class="form-group">
                         <label class="small mb-1" for="inputEmailAddress">{{ __('Student name') }}</label>
                          <input id="name" type="text" class="form-control" {{-- @error('name') is-invalid @enderror --}} name="name" value="{{ old('name') }}" required autocomplete="name" placeholder="Enter Student name">
@@ -151,7 +154,9 @@
         </div>
       </div>
 		</div>
-		
+	{{-- 	<div class="col-lg-9 showcategory">
+      
+    </div> --}}
 		
 	</div>
 	</div>
@@ -180,29 +185,77 @@
 			$(this).addClass('active').siblings().removeClass('active')
 		})
 	</script>
-{{-- 
-  <script type="text/javascript">
-    $(document).ready(function () {
-      $.ajaxSetup({
+
+ {{--  <script type="text/javascript">
+     $.ajaxSetup({
         headers: {
           'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         }
       });
-      $('.category').click(function (e) {
+    $(document).ready(function () {
+      $('.category1').click(function (e) {
         e.preventDefault();
         let category_id = $(this).data('id');
         $.post("{{route('bycategory')}}",{id:category_id},function (response) {
           // console.log(response);
-          var html+= "";
-          for(let row of response){
-          	html+=`<div class="${row.id}">
-          		<p>${row.photo}</p>
-          		<p>${row.name}</p>
-          	</div>`;
-          }
+          var html= "";
+          $.each(response, function(i,v){
+             // console.log(v);
+             var cid=v.id;
+             var name=v.name;
+             var photo=v.photo;
+
+             html+=`<h1>${name}</h1>`
+          })
+
+          	// html+=`<div class="${row.id}">
+          	// 	<p>${row.photo}</p>
+          	// 	<p>${row.name}</p>
+          	// </div>`;
+          
           $('.showcategory').html(html);
         })
       })
     })
+
   </script> --}}
+  <script type="text/javascript">
+    // * $.ajaxSetup({
+  //        headers: {
+  //          'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+  //            }
+    //    });
+    $(document).ready(function() {
+      $('.Button').click(function(){
+          var Cid=$(this).data('id');
+         var cid=$('.Course1').val(Cid);
+        // console.log(cid);
+
+      // $.post(""), {id:cid}, function (response) {
+      //    console.log(response);
+
+      // })
+        })
+
+      })
+
+  </script>
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+  <script type="text/javascript">
+    // $.ajaxSetup({
+  //      headers: {
+  //          'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+  //          }
+    //    });
+    $(document).ready(function() {
+      
+      $('.reg').click(function(){
+        swal({
+            title: "Register Successfully!",
+            icon: "success",
+            button: "OK",
+          });
+      })
+    });
+  </script>
 @endsection

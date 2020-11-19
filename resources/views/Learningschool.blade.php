@@ -51,23 +51,26 @@
           <a class="nav-link " href="{{route('mainpage')}}" id="home">Home
           </a>
         </li>
-         <li class="nav-item dropdown " >
+         <li class="nav-item dropdown" >
+         {{--    @foreach($categories as $category) --}}
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="font-size: 22px; color: black;" >
          Courses
         </a>
         <div class="dropdown-menu fade-down" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item text-dark " href="{{route('grade1', 1)}} ">Grade 1</a><br>
+           <a class="dropdown-item text-dark" href=" {{route('grade2', 2)}}">Grade 2</a><br>
+            <a class="dropdown-item text-dark" href="{{route('grade3', 3)}}">Grade 3</a><br>
+            <a class="dropdown-item text-dark" href="{{route('grade4', 4)}}">Grade 4</a><br>
+            <a class="dropdown-item text-dark" href="{{route('grade5', 5)}}">Grade 5</a><br>
+             <a class="dropdown-item text-dark" href="{{route('grade6', 6)}}">Grade 6</a><br>
+             <a class="dropdown-item text-dark" href="{{route('grade7', 7)}}">Grade 7</a><br>
+             <a class="dropdown-item text-dark" href="{{route('grade8', 8)}}">Grade 8</a><br>
+             <a class="dropdown-item text-dark" href="{{route('grade9', 9)}}">Grade 9</a>
           
-          <a class="dropdown-item text-dark" href="{{route('grade1page')}} ">GRADE 1</a>
-          <a class="dropdown-item text-dark" href="#">GRADE 2</a>
-          <a class="dropdown-item text-dark" href="#">GRADE 3</a>
-          <a class="dropdown-item text-dark" href="#">GRADE 4</a>
-          <a class="dropdown-item text-dark" href="#">GRADE 5</a>
-          <a class="dropdown-item text-dark" href="#">GRADE 6</a>
-          <a class="dropdown-item text-dark" href="#">GRADE 7</a>
-          <a class="dropdown-item text-dark" href="#">GRADE 8</a>
-          <a class="dropdown-item text-dark" href="#">GRADE 9</a>
         </div>
+        {{--  @endforeach --}}
       </li>
+
           
            <li class="nav-item ">
           <a class="nav-link" href="{{route('onlinecoursepage')}}" id="online">Online Courses
@@ -86,11 +89,14 @@
                   </a>
 
                  <div class="dropdown-menu dropdown-menu-right " aria-labelledby="navbarDropdown" >
+                   <a href="{{route('profilepage')}}" style="font-size: 16px; color: black; width: 150px;">Profile</a><br>
+                   {{--  <a href="{{route('registerdetail')}}" style="font-size: 16px; color: black;">Register Detail</a><br> --}}
+
                  <a class="dropdown-item" href="{{ route('logout') }}"
                    onclick="event.preventDefault();
                      document.getElementById('logout-form').submit();" style="font-size: 16px; color: black;">  Logout
                         </a>
-
+                
                 <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                   @csrf
                   </form>
@@ -115,7 +121,7 @@
   <!-- Footer -->
   <footer class="py-5" style="background: #001C2D  ">
     <div class="container">
-      <p class="m-0 text-center text-white">Copyright &copy; Learning School </p>
+      <p class="m-0 text-center text-white">copy right&copy;  2020 Learning School.</p>
     </div>
     <!-- /.container -->
   </footer>
@@ -149,13 +155,13 @@
       });
     });
   </script> --}}
-{{--   
+  
   <script>
       AOS.init({
         duration:2000,
         once: true,
       });
-    </script> --}}
+    </script>
     <script type="text/javascript">
     const currentLocation = location.href;
     const menuItem = document.querySelectorAll('a');

@@ -6,8 +6,8 @@
         background-size: cover;
         height:400px;
         background-position: center;">
-        <h1 class="display-4 text-dark H1">Welcome My Learning School</h1>
-        <a class="btn btn-primary btn-lg my-4 BTN" href="https://www.youtube.com/watch?v=Zcpwdcvz3KE"  target="_blanks" role="button">Recommendation <i class="fas fa-angle-right"></i><i class="fas fa-angle-right"></i></a>
+        <h1 class="display-4 text-dark H1">Welcome Our Learning School</h1>
+        <a class="btn btn-primary btn-lg my-4 BTN" href="{{route('recommend')}}" role="button">Recommendation <i class="fas fa-angle-right"></i><i class="fas fa-angle-right"></i></a>
   </div>
   {{-- Slider end --}}
 		<div class="container my-5">
@@ -45,22 +45,43 @@
 				</div>
 			</div>
 		</div>
+	</div><br><br><br>
+
+	
+
+
+
+	<div class="container">
+		<h2 class="text-center font-weight-bold">Excellence Students</h2>
+		<div class="row my-5">
+		@foreach($photo as $p)
+		 <div class="col-lg-4 col-md-6 "data-aos="fade-down">
+		 	<div class="card shadow text-justify mt-4" {{-- style="width: 22rem;" --}}>
+		  <img src="{{$p->photo}}" class="img-fluid" alt="...">
+		  <div class="card-body">
+		    <h5 class="card-title text-center font-italic font-weight-bold">{{$p->name}}</h5>
+		    <p class="card-text">{{$p->description}}</p>
+		  </div>
+		</div>
+		 </div>
+		  @endforeach
+		</div>
 	</div>
 
 	<h2 class="text-center TExt">Course</h2>
-	<div class="container my-5">
+	<div class="container my-2">
 		<div class="row">
 			 @foreach($Courses as $course)
-			<div class="col-md-4">
-				<div class="card shadow">
+			<div class="col-md-4 mt-5">
+				<div class="card shadow box my-4">
 				<a href="{{route('coursedetail',$course->id)}}">	
 					<img src="{{$course->photo}}" class="img-fluid w-75"></a>
-						<div class="card-body text-center">	
+						<div class=" text-center box-content">	
 							<p class="card-text"> {{$course->name}} </p>
-
-							<a href="{{route('coursedetail',$course->id)}}"><button class="btn btn-outline-primary bTn container-fluid" > Details </button></a>
 						</div>
+						
 				</div>
+				<a href="{{route('coursedetail',$course->id)}}"><button class="btn btn-outline-primary bTn container-fluid" > Details </button></a>
 			</div>
 			@endforeach
 		</div>
@@ -74,58 +95,44 @@
 	
 
 
-
-
-
 	 <h2 class="text-center TExt">Recommendation</h2> 
 	<div class="testimonials">
 		<div class="inner">
 			<div class="row1">
-
+				@foreach($recommend as $re)
 				<div class="col">
 					<div class="testimonial">
-						<img src="{{asset('asset/image/02.jpg')}}">
-						<div class="name"> Aung Kyaw </div>
+						<img src="{{$re->photo}}">
+						<div class="name"> {{$re->name}} </div>
 						<div class="stars">
+						@if($re->rating==1)
+						<i class="fa fa-star"></i>
+						@elseif($re->rating==2)
 							<i class="fa fa-star"></i>
 							<i class="fa fa-star"></i>
-							<i class="fa fa-star"></i>
-							<i class="fa fa-star"></i>
-							<i class="fa fa-star"></i>
+						@elseif($re->rating==3)
+						<i class="fa fa-star"></i>
+						<i class="fa fa-star"></i>
+						<i class="fa fa-star"></i>
+						@elseif($re->rating==4)
+						<i class="fa fa-star"></i>
+						<i class="fa fa-star"></i>
+						<i class="fa fa-star"></i>
+						<i class="fa fa-star"></i>
+						@else
+						<i class="fa fa-star"></i>
+						<i class="fa fa-star"></i>
+						<i class="fa fa-star"></i>
+						<i class="fa fa-star"></i>
+						<i class="fa fa-star"></i>
+						@endif
 						</div>
-						<p>" Learning Private School is very good for every students. The teachers are good at teaching and very patient for our childrens. One of the best school ever! "</p>
+						
+						<p>" {{$re->description}} "</p>
 					</div>
 				</div>
+				@endforeach
 
-				<div class="col">
-					<div class="testimonial">
-						<img src="{{asset('asset/image/01.jpg')}}">
-						<div class="name"> Kyaw Htet </div>
-						<div class="stars">
-							<i class="fa fa-star"></i>
-							<i class="fa fa-star"></i>
-							<i class="fa fa-star"></i>
-							<i class="fa fa-star-o"></i>
-							<i class="fa fa-star-o"></i>
-						</div>
-						<p>" This school is not very good. It is same like the other private school. But one things I like is the teacher from this school is very patient to our children. "</p>
-					</div>
-				</div>
-
-				<div class="col">
-					<div class="testimonial">
-						<img src="{{asset('asset/image/0.jpg')}}">
-						<div class="name"> Aye Thaung </div>
-						<div class="stars">
-							<i class="fa fa-star"></i>
-							<i class="fa fa-star"></i>
-							<i class="fa fa-star"></i>
-							<i class="fa fa-star"></i>
-							<i class="fa fa-star-o"></i>
-						</div>
-						<p>" I usually don't like private schools but I think this school is the best for my children education because they have good facilities and teachers. "</p>
-					</div>
-				</div>
 			</div>
 		</div>
 	</div>

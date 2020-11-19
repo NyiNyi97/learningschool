@@ -1,7 +1,7 @@
 @extends('Learningschool')
 @section('content')
 	
-	<div class="jumbotron text-center" style="background-image:url('asset/image/s5.jpg');
+	<div class="jumbotron text-center" style="background-image:url(asset/image/s3.jpg);
         background-size: cover;
         height:400px;
         background-position: center;">
@@ -36,10 +36,13 @@
 	            </div>
 	            <div class="">
 	              <!-- Button trigger modal -->
-						<button type="button" class="btn btn-outline-primary bTn" data-toggle="modal" data-target="#exampleModal">
-						  Register
+	              @role('customer')
+						<button type="button" class="btn btn-outline-primary bTn " data-toggle="modal" data-target="#exampleModal" id="Button" data-id="{{$course->id}}">
+						  Register 
 						</button>
-
+					@else
+					<a href="{{route('signinpage')}}" class="btn btn-outline-primary bTn "> Register </a>
+				  @endrole
 						<!-- Modal -->
 						<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
 						  <div class="modal-dialog">
@@ -53,6 +56,7 @@
 						      <div class="modal-body">
 						<form action="{{route('register.store')}}" method="POST" enctype="multipart/form-data">
           					@csrf
+          					<input type="hidden" name="course" value="{{$course->id}}">
                         <div class="form-group">
                         <label class="small mb-1" for="inputEmailAddress">{{ __('Student name') }}</label>
                          <input id="name" type="text" class="form-control" {{-- @error('name') is-invalid @enderror --}} name="name" value="{{ old('name') }}" required autocomplete="name" placeholder="Enter Student name">
@@ -135,20 +139,21 @@
 	        </div>
 	      </div>
 	    <br><br>
-	  		  <div class="row my-4">
-	          <h2> Related Course </h2><br>
+	  		 
+  </div> 
+  <div class="container">
+  	 <h2 class="font-weight-bold"> Related Course </h2><br>
+  	 <div class="row my-4">
 	          @foreach($category as $course)
-	          <div class="col-lg-3 col-md-6 col-sm-12 col-12 my-5">
+	          <div class="col-lg-4 col-md-6 col-sm-6 my-5">
 	        <a href="{{route('coursedetail',$course->id)}}">
-	          <img src="{{$course->photo}}" class="img-fluid" style="height: 250px; object-fit: cover;">
+	          <img src="{{$course->photo}}" class="img-fluid " >
 	        </a>
 	      </div>
 	      @endforeach
-	       
 	      </div>
-
-  </div> 
-
+  </div>
+ 
 @endsection
 
 @section('script')
@@ -170,5 +175,24 @@
 					});
 			})
 		});
+	</script>
+	<script type="text/javascript">
+		// * $.ajaxSetup({
+  //    		headers: {
+  //       		'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+  //    				}
+		// 		});
+		$(document).ready(function() {
+			$('#Button').click(function(){
+					let cid= $(this).data('id');
+				// console.log(cid);
+			// $.post(""), {id:cid}, function (response) {
+			// 		console.log(response);
+
+			// })
+				})
+
+			})
+
 	</script>
 @endsection

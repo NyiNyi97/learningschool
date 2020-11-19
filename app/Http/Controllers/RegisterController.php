@@ -4,11 +4,20 @@ namespace App\Http\Controllers;
 
 use App\Register;
 use App\Course;
+use App\Category;
 use Illuminate\Http\Request;
 use Auth;
 
 class RegisterController extends Controller
 {
+    public function __construct($value='')
+    {
+       $this->middleware('role:admin', ['only'=>[
+        'index','show', 'destroy', 'confirm'
+       ]]);
+        $this->middleware(['role:customer'])->only('store');
+
+    }
     /**
      * Display a listing of the resource.
      *
@@ -41,7 +50,7 @@ class RegisterController extends Controller
     public function store(Request $request)
     {
         // dd($request);
-          $c =Course::take(1)->get();
+        $course=$request->course;
         // dd($c);
 
            // if include file, upload
@@ -64,11 +73,10 @@ class RegisterController extends Controller
             $register->user_id=Auth::id();
             $register->save();
 
-            foreach($c as $row){
                 // dd($course);
-                $register->courses()->attach($row->id);
+                $register->courses()->attach($course);
                 // dd($register);
-            }
+            
         //redirect
              return redirect()->route('mainpage');
     }
@@ -81,7 +89,7 @@ class RegisterController extends Controller
      */
     public function show(Register $register)
     {
-
+       
           return view('register.show', compact('register'));
     }
 

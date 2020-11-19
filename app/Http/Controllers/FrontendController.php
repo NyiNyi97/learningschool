@@ -6,13 +6,19 @@ use Illuminate\Http\Request;
 use Mail;
 use App\Course;
 use App\Category;
+use App\Photo;
+use App\User;
+use App\Recommendation;
+use Auth;
 
 class FrontendController extends Controller
 {
     public function home($value='')
     {
      $Courses=Course::take(9)->get();
-    	return view('frontend_project.mainpage', compact('Courses'));
+     $photo=Photo::all();
+     $recommend= Recommendation::take(3)->get();
+    	return view('frontend_project.mainpage', compact('Courses','photo', 'recommend'));
     }
 
     public function coursedetail($id)
@@ -65,47 +71,108 @@ class FrontendController extends Controller
 
     public function profile($value='')
     {
-        return view('frontend_project.profile');
+         $user_id=Auth::id();
+         // dd($user_id);
+         $user = User::find($user_id);
+        return view('frontend_project.profile',compact('user'));
     }
 
      public function aboutus($value='')
     {
         return view('frontend_project.aboutus');
     }
-
-    public function grade1($value='')
+    public function grade1($id)
     {   
-        // $course = Course::find($id);
-        //  $cid=$course->category_id;
-        // // dd($cid);
-        // $category=Course::where('category_id', $cid)->get();
-        // // dd($category);
-           $courses= Course::take(6)->get();
-       return view('frontend_project.grade1', compact('courses'));
+        $course = Course::find($id);
+        // dd($id);
+        $category=Course::where('category_id', $id)->get();
+       return view('frontend_project.grade1', compact('category', 'course'));
+    }
+
+    public function grade2($id)
+    {   
+        $course = Course::find($id);
+        // dd($id);
+        $category=Course::where('category_id', $id)->get();
+       return view('frontend_project.grade2', compact('category', 'course'));
+    }
+    public function grade3($id)
+    {   
+        $course = Course::find($id);
+        // dd($id);
+        $category=Course::where('category_id', $id)->get();
+       return view('frontend_project.grade3', compact('category', 'course'));
+    }
+    public function grade4($id)
+    {   
+        $course = Course::find($id);
+        // dd($id);
+        $category=Course::where('category_id', $id)->get();
+       return view('frontend_project.grade4', compact('category', 'course'));
+    }
+    public function grade5($id)
+    {   
+        $course = Course::find($id);
+        // dd($id);
+        $category=Course::where('category_id', $id)->get();
+       return view('frontend_project.grade5', compact('category', 'course'));
+    }
+    public function grade6($id)
+    {   
+        $course = Course::find($id);
+        // dd($id);
+        $category=Course::where('category_id', $id)->get();
+       return view('frontend_project.grade6', compact('category', 'course'));
+    }
+    public function grade7($id)
+    {   
+        $course = Course::find($id);
+        // dd($id);
+        $category=Course::where('category_id', $id)->get();
+       return view('frontend_project.grade7', compact('category', 'course'));
+    }
+    public function grade8($id)
+    {   
+        $course = Course::find($id);
+        // dd($id);
+        $category=Course::where('category_id', $id)->get();
+       return view('frontend_project.grade8', compact('category', 'course'));
+    }
+    public function grade9($id)
+    {   
+        $course = Course::find($id);
+        // dd($id);
+        $category=Course::where('category_id', $id)->get();
+       return view('frontend_project.grade9', compact('category', 'course'));
     }
   
     public function coursebycategory($id)
     {
-        // dd($id);
-       //   $categories=Category::find($id);
-       //   // dd($categories);
-       //   $courses=Course::all();
-       //   // dd($courses);
-       // return view('frontend_project.coursebycategory', compact('categories', 'courses'));
          $categories=Category::all();
-        $course=Course::where('category_id',$id)->get();
-       // dd($course);
+        // $course=Course::where('category_id',$id)->get();
 
+        // $course = Course::find($id);
        // dd($couid);
-      
-       // dd($Category);
-       return view('frontend_project.coursebycategory', compact('course', 'categories'));
+       $category=Course::where('category_id', $id)->get();
+       // dd($category);
+       return view('frontend_project.coursebycategory', compact( 'categories', 'category'));
     }
 
-    // public function bycategory(Request $request)
+    public function bycategory(Request $request)
+    {
+      $id=$request->id;
+      $course=Course::where('category_id', $id)->get();
+      return $course;
+    }
+
+     public function recommend($value='')
+    {
+      return view('frontend_project.recommendation');
+    }
+
+    // public function registerdetail($value='')
     // {
-    //   $id=$request->id;
-    //   $course=Course::where('category_id', $id)->get();
-    //   return $course;
+    //     return view('frontend_project.registerdetail');
     // }
+
 }

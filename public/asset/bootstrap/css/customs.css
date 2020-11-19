@@ -1,5 +1,6 @@
 *{
-  scroll-behavior: smooth;
+ padding: 0;
+ margin: 0;
 }
 body {
   padding-top: 56px;
@@ -42,7 +43,8 @@ body {
 }
 .snip1198 a {
   padding: 0 0.7em;
-  color: rgba(255, 255, 255, 1.0);
+/*   color: rgba(255, 255, 255, 1.0); */
+  color: black;
   position: relative;
   text-decoration: none;
   display: inline-block;
@@ -104,8 +106,9 @@ a#online.active{
   font-size: 25px;
   
 }
-.BtN{
-  color: blue;
+.p{
+  font-size: 21px;
+  line-height: 38px;
 }
 
 @media screen and (min-width: 992px){
@@ -145,6 +148,10 @@ a#online.active{
 .H2{
   font-family: san;
   padding-top: 220px;
+}
+.H3{
+  font-family: san;
+  padding-top: 120px;
 }
 
 .BTN{
@@ -371,19 +378,19 @@ background-size: cover;
 } */
 
 
-.single-content{
+/* .single_content{
   position: relative;
   transition: .3s;
 }
 
-.single-content .text-content,
-.single-content:after{
+.single_content .text_content,
+.single_content:after{
   position: absolute;
   left: 20px;
   right: 20px;
 }
 
-.single-content:after{
+.single_content:after{
   content: '';
   display: block;
   background:#154360;
@@ -395,17 +402,17 @@ background-size: cover;
 
 }
 
-.single-content:hover:after{
+.single_content:hover:after{
   opacity: .9;
   transform: rotate3d(0,0,0,0deg);
 }
 
-.single-content img{
-  width: 530px;
-  height: 280px;
+.single_content img{
+  width: 100%;
+  height: auto;
 }
 
-.text-content{
+.text_content{
   top: 45%;
     opacity: 0;
     z-index: 1;
@@ -415,11 +422,11 @@ background-size: cover;
     color: #fff;
 }
 
-.single-content:hover .text-content{
+.single_content:hover .text_content{
   opacity: 1;
   transform: translate(0,-50%);
   transition-delay: .3s;
-}
+} */
 
 
 .single_content{
@@ -437,7 +444,7 @@ background-size: cover;
 .single_content:after{
   content: '';
   display: block;
-  background:#1B4F72  ;
+  background: linear-gradient(to bottom, #003399 0%, #0066cc 100%);
   top: -0.1px;
   bottom: 62px;
   left: -0.1px;
@@ -479,3 +486,167 @@ background-size: cover;
     background-size: cover;
 
 }
+
+.box{
+  position: relative;
+  overflow: hidden;
+  text-align: center;
+}
+
+.box:before{
+  content: '';
+  position: absolute;
+  background: linear-gradient(to bottom, #66ff99 0%, #009900 100%);
+ /*  background: linear-gradient(to bottom, #003399 0%, #0066cc 100%); */
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  opacity: 0;
+  transition: all 0.4s linear;
+
+}
+
+.box:hover:before{
+  opacity: 1;
+}
+
+.box:hover img{
+  width: 100%;
+  height: auto;
+  transition: all 0.4s linear;
+
+}
+
+.box:hover img{
+
+  opacity: 0;
+  transform: scale(3);
+}
+
+
+.box .box-content{
+  color: white;
+  font-weight: bold;
+  width: 100%;
+  transform: translateY(-50%) scale(0);
+  position: absolute;
+  top:50%;
+  left: 0;
+  transition: all 0.4s linear;
+  font-size: 20px;
+  }
+
+.box:hover .box-content{
+   transform: translateY(-50%) scale(1);
+}
+
+figure{
+  overflow: hidden;
+  position: relative;
+}
+figure img{
+  position: relative;
+  opacity: 0.95;
+  transition: opacity 0.35s transform 0.35s;
+  transform: scale3d(1.05, 1.05, 1);
+}
+
+figure figcaption{
+  padding: 2em;
+  color: black;
+  backface-visibility: hidden;
+}
+
+figure figcaption,
+figure figcaption > a{
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+figcaption p {
+  color: black;
+  font-size: 21px;
+   font-weight: bold;
+}
+figcaption p a{
+  color: black;
+  font-weight: bold;
+  font-size: 35px;
+
+}
+
+figure{
+  background:#0066cc;
+}
+
+figure figcaption:before{
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.5);
+  content: '';
+  transition: transform 0.6s;
+  transform: scale3d(1.9, 1.4,1) rotate3d(0, 0, 1, 45deg) translate3d(0, -100%, 0);
+}
+
+figure p{
+  border-right: 4px solid black;
+  bottom: 0;
+  margin: 3em;
+  max-width: 340px;
+  opacity: 0;
+  padding: 0 1em;
+  position: absolute;
+  right: 0;
+  text-align: right;
+  transition: opacity 0.35s ease 0s;
+
+}
+
+figure:hover img{
+  opacity: 0.6;
+  transform: scale3d(1, 1, 1);
+
+}
+
+figure:hover figcaption:before{
+  transform: scale3d(1.9, 1.4,1) rotate3d(0, 0, 1, 45deg) translate3d(0, 100%, 0);  
+}
+
+figure:hover p{
+  opacity: 1;
+  transition-delay: 0.1s;
+}
+
+/* .zoom {
+    position: relative;
+  margin: 2%;
+  overflow: hidden;
+      } */
+
+/* .zoom:hover img{
+    -ms-transform: scale(0.5);        
+    -webkit-transform: scale(0.5);   
+    transform: scale(1.2); 
+    margin: auto;
+} */
+
+/* .zoom img{
+  max-width: 100%;
+
+  -moz-transition: all 0.3;
+  -webkit-transition:all 0.3;
+  transition: all .5s;
+} */
+
+/* #A{
+  outline: none;
+  font-size: 20px;
+  text-decoration: none 
+/*   padding-left: 13px; */
+/* } */ 

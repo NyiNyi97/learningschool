@@ -16,7 +16,8 @@ class UserController extends Controller
      */
     public function index()
     {
-        //
+        $user=User::all();
+        return view('user.index',compact('user'));
     }
 
     /**
@@ -44,11 +45,21 @@ class UserController extends Controller
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:8|confirmed',
         ]);
+          // if include file, upload
+        // if ($request->file()) {
+        //     //23233432121_a.jpg
+        //     $fileName=time().'_'.$request->photo->getClientOriginalName();
+        //     //brandimg/343431212_a.jpg
+        //     $filePath=$request->file('photo')->storeAs('userimg',$fileName,'public');
+            $path='/asset/image/user3.png';
+    
        //data store
          $user=new User;
          $user->name=$request->name;
          $user->email=$request->email;
          $user->password=Hash::make($request->password);
+         $user->photo=$path;
+         $user->phone=$request->phone;
          $user->save();
        //assign user as customer 
          $user->assignRole('customer');
@@ -90,7 +101,38 @@ class UserController extends Controller
      */
     public function update(Request $request, User $user)
     {
-        //
+       // dd($user);
+       //validation
+    
+          // if include file, upload
+        if ($request->file()) {
+            //23233432121_a.jpg
+            $fileName=time().'_'.$request->newphoto->getClientOriginalName();
+            //brandimg/343431212_a.jpg
+            $filePath=$request->file('newphoto')->storeAs('userimg',$fileName,'public');
+            $path=' /storage/'.$filePath;
+    
+    }
+    else{
+            $path=$request->newphoto;
+        }
+
+        $id=$user->id; 
+         // dd($id);
+         $user=User::find($id);
+         $user->name=$request->name;
+         $user->email=$request->email;
+         // $user->password=Hash::make($request->password);
+         $user->photo=$path;
+         $user->phone=$request->phone;
+         $user->save();
+       //assign user as customer 
+         // $user->assignRole('customer');
+
+      //login
+         // Auth::login($user);
+       //redirect
+         return redirect()->route('profilepage');
     }
 
     /**

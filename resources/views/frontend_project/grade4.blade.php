@@ -1,11 +1,11 @@
 @extends('Learningschool')
 @section('content')
 
-	<div class="jumbotron text-center" style="background-color:#A9CCE3;
+ <div class="jumbotron text-center" style="background-color:#A9CCE3;
         background-size: cover;
         height:400px;
         background-position: center;">
-        <h1 class="display-4 text-dark H1">Grade 2</h1>
+        <h1 class="display-4 text-dark H1">Grade 4</h1>
       
   </div>
 
@@ -13,17 +13,17 @@
   		<div class="row">
   		@foreach($category as $course)
   		<div class="col-lg-4 mt-5">
-    <a href="{{route('coursedetail', $course->id)}}">
-    <figure>
-			<img src="{{$course->photo}}" class="img-fluid w-100">
+       <a href="{{route('coursedetail', $course->id)}}">
+			<figure>
+      <img src="{{$course->photo}}" class="img-fluid w-100">
         <figcaption>
-			<p align="center"> {{$course->name}}</p>
-    </figcaption>
-  </figure>
-  </a>
-		<div class="">
+      <p align="center"> {{$course->name}}</p>
+     </figcaption>
+     </figure>
+   </a>
+	<div class="">
                 <!-- Button trigger modal -->
-            @role('customer')
+           @role('customer')
             <button type="button" class="btn btn-outline-primary bTn container-fluid Button" data-toggle="modal" data-target="#exampleModal" data-id="{{$course->id}}">
               Register 
             </button>
@@ -140,8 +140,8 @@
   //            }
     //    });
     $(document).ready(function() {
-     $('.Button').click(function(){
-        var Cid=$(this).data('id');
+      $('.Button').click(function(){
+          var Cid=$(this).data('id');
          var cid=$('.Course1').val(Cid);
         // console.log(cid);
       // $.post(""), {id:cid}, function (response) {

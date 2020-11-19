@@ -13,19 +13,24 @@
     <div class="row">
       <div class="col-md-12">
         <div class="tile">
+      {{--    {{$register->courses}} --}}
           <h2>Register Detail</h2>
+            @foreach($register->courses as $reg)
             <div class="card my-3">
             <div class="row no-gutters">
               <div class="col-md-4">
-                <img src="{{($register->photo)}}" class="card-img" alt="...">
+                <img src="{{($register->photo)}}" class="card-img" alt="..."> 
               </div>
               <div class="col-md-8">
                 <div class="card-body" style="font-size: 17px;">
                   <h3 class="card-title">Register date :{{$register->registerdate}}</h3>
-                  <p class="card-title">Student name : {{$register->user->name}}</p>
-                  <p class="card-text">Birthday : {{$register->birthday}}</p>
-                   <p class="card-text">phone number : {{$register->phone }}</p>
-                   <p class="card-text">Address : {{$register->address}}</p>
+                  <p class="card-title "><strong> Student name</strong> : {{$register->user->name}}</p>
+                  <p class="card-text"><strong>Course name</strong> : {{$reg->name}}</p>
+                 {{--  <p class="card-text"><strong>Category name :</strong> {{$register->name}}</p> --}}
+                  <p class="card-text"><strong>Birthday</strong> : {{$register->birthday}}</p>
+                   <p class="card-text"><strong>Phone number</strong> : {{$register->phone }}</p>
+                   <p class="card-text"><strong>Address</strong> : {{$register->address}}</p>
+               
                 
                    @if($register->status==0)
                     <form action="{{route('register.confirm', $register->id)}}" method="post">
@@ -40,6 +45,7 @@
               </div>
             </div>
           </div>
+          @endforeach
         </div>
       </div>
     </div>
